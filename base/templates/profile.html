@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 <style>
   @import url("https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900");
@@ -50,6 +51,7 @@
     width: 100%;
     padding-bottom: 3em;
   }
+  
   h2 {
     color: #1a0e0e;
     font-size: 26px;
@@ -379,7 +381,7 @@
                 Profile
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+              <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Logout
               </a>
@@ -403,19 +405,19 @@
                       <div class="col-lg-4">
                         <div class="card shadow-sm">
                           <div class="card-header bg-transparent text-center">
-                            <img
+                            <img style="max-width: 100%; border-radius: 15px; height: 100%;"
                               class="profile_img"
-                              src="https://source.unsplash.com/600x300/?student"
+                              src="{{user.profile_pic.url}}"
                               alt="student dp"
                             />
-                            <h3>Ishmam Ahasan Samin</h3>
+                            <h5>{{user.first_name}} {{user.last_name}}</h5>
                           </div>
                           <div class="card-body">
                             <p class="mb-0">
-                              <strong class="pr-1">Student ID:</strong>321000001
+                              <strong class="pr-2">Email :</strong>{{user.email}}
                             </p>
-                            <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
-                            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
+                            <!-- <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
+                            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p> -->
                           </div>
                         </div>
                       </div>
@@ -423,55 +425,41 @@
                         <div class="card shadow-sm">
                           <div class="card-header bg-transparent border-0">
                             <h3 class="mb-0">
-                              <i class="far fa-clone pr-1"></i>General Information
+                              General Information
                             </h3>
                           </div>
                           <div class="card-body pt-0">
                             <table class="table table-bordered">
                               <tr>
-                                <th width="30%">Roll</th>
+                                <th width="30%">Contract No.</th>
                                 <td width="2%">:</td>
-                                <td>125</td>
+                                <td>{{user.contract_no}}</td>
                               </tr>
                               <tr>
-                                <th width="30%">Academic Year</th>
+                                <th width="30%">Contract Start </th>
                                 <td width="2%">:</td>
-                                <td>2020</td>
+                                <td>{{user.contract_start_date}}</td>
                               </tr>
                               <tr>
-                                <th width="30%">Gender</th>
+                                <th width="30%">Contract End</th>
                                 <td width="2%">:</td>
-                                <td>Male</td>
+                                <td>{{user.contract_end_date}}</td>
                               </tr>
                               <tr>
-                                <th width="30%">Religion</th>
+                                <th width="30%">State</th>
                                 <td width="2%">:</td>
-                                <td>Group</td>
+                                <td>{{user.state}}</td>
                               </tr>
                               <tr>
-                                <th width="30%">blood</th>
+                                <th width="30%">Mobile</th>
                                 <td width="2%">:</td>
-                                <td>B+</td>
+                                <td>+91 {{user.phone_number}}</td>
                               </tr>
                             </table>
                           </div>
                         </div>
-                        <div style="height: 26px"></div>
-                        <div class="card shadow-sm">
-                          <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0">
-                              <i class="far fa-clone pr-1"></i>Other Information
-                            </h3>
-                          </div>
-                          <div class="card-body pt-0">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna
-                              aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                              ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                          </div>
-                        </div>
+                        <div style="height: 36px"></div>
+                        <button type="submit" class="btn btn-secondary">Change Password</button>
                       </div>
                     </div>
                   </div>
@@ -486,6 +474,7 @@
       <!---Container Fluid-->
     </div>
     <!-- Footer -->
+    <br>
     <footer class="sticky-footer bg-white">
       <div class="container my-auto">
         <div class="copyright text-center my-auto">

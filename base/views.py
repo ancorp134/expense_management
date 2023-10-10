@@ -12,6 +12,10 @@ def dashboard(request):
         pass
     return render(request,'dashboard.html')
 
-
+@login_required(login_url='login')
 def profileView(request):
-    return render(request,'profile.html')
+    user = request.user
+    context ={
+        'user' : user
+    }
+    return render(request,'profile.html' , context)
