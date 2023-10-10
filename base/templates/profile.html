@@ -1,0 +1,504 @@
+{% extends 'base.html' %}
+
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900");
+
+  html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  article,
+  header,
+  section,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  main,
+  nav,
+  section,
+  summary {
+    display: block;
+  }
+  body {
+    color: #222;
+    font-size: 100%;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+  }
+  a {
+    font-family: "Raleway", sans-serif;
+    text-decoration: none;
+    outline: none;
+  }
+  a:hover,
+  a:focus {
+    color: #373e18;
+  }
+  section {
+    float: left;
+    width: 100%;
+    padding-bottom: 3em;
+  }
+  h2 {
+    color: #1a0e0e;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+  h2 span {
+    display: block;
+    padding: 0;
+    font-size: 18px;
+    opacity: 0.7;
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+
+  #float-right {
+    float: right;
+  }
+
+  /* ******************************************************
+	Script Top
+*********************************************************/
+
+  .ScriptTop {
+    background: #fff none repeat scroll 0 0;
+    float: left;
+    font-size: 0.69em;
+    font-weight: 600;
+    line-height: 2.2;
+    padding: 12px 0;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  /* To Navigation Style 1*/
+  .ScriptTop ul {
+    margin: 24px 0;
+    padding: 0;
+    text-align: left;
+  }
+  .ScriptTop li {
+    list-style: none;
+    display: inline-block;
+  }
+  .ScriptTop li a {
+    background: #6a4aed none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 18px;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+  .ScriptTop li a:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* ******************************************************
+	Script Header
+*********************************************************/
+
+  .ScriptHeader {
+    float: left;
+    width: 100%;
+    padding: 2em 0;
+  }
+  .rt-heading {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .Scriptcontent {
+    line-height: 28px;
+  }
+  .ScriptHeader h1 {
+    font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro",
+      "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue",
+      Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #6a4aed;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+    line-height: normal;
+  }
+  .ScriptHeader h2 {
+    color: #312c8f;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 5px 0 0;
+    line-height: normal;
+  }
+  .ScriptHeader h1 span {
+    display: block;
+    padding: 0;
+    font-size: 22px;
+    opacity: 0.7;
+    margin-top: 5px;
+  }
+  .ScriptHeader span {
+    display: block;
+    padding: 0;
+    font-size: 22px;
+    opacity: 0.7;
+    margin-top: 5px;
+  }
+
+  /* ******************************************************
+	Live Demo
+*********************************************************/
+
+  /* ******************************************************
+	Responsive Grids
+*********************************************************/
+
+  .rt-container {
+    margin: 0 auto;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .rt-row:before,
+  .rt-row:after {
+    display: table;
+    line-height: 0;
+    content: "";
+  }
+
+  .rt-row:after {
+    clear: both;
+  }
+  [class^="col-rt-"] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding: 0 15px;
+    min-height: 1px;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .rt-container {
+      width: 750px;
+    }
+    [class^="col-rt-"] {
+      float: left;
+      width: 49.9999999999%;
+    }
+    .col-rt-6,
+    .col-rt-12 {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .rt-container {
+      width: 1170px;
+    }
+    .col-rt-1 {
+      width: 16.6%;
+    }
+    .col-rt-2 {
+      width: 30.33%;
+    }
+    .col-rt-3 {
+      width: 50%;
+    }
+    .col-rt-4 {
+      width: 67.664%;
+    }
+    .col-rt-5 {
+      width: 83.33%;
+    }
+  }
+
+  @media only screen and (min-width: 240px) and (max-width: 768px) {
+    .ScriptTop h1,
+    .ScriptTop ul {
+      text-align: center;
+    }
+    .ScriptTop h1 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .ScriptTop ul {
+      margin-top: 12px;
+    }
+
+    .ScriptHeader h1,
+    .ScriptHeader h2,
+    .scriptnav ul {
+      text-align: center;
+    }
+    .scriptnav ul {
+      margin-top: 12px;
+    }
+    #float-right {
+      float: none;
+    }
+  }
+</style>
+{% load static %} 
+{% block title %} Employee Profile {% endblock %} 
+{% block start %}
+
+<div id="wrapper">
+  <!-- Sidebar -->
+  <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard' %}">
+      <div class="sidebar-brand-icon">
+        <img src="">
+      </div>
+      <div class="sidebar-brand-text mx-4">Inductus</div>
+    </a>
+    <hr class="sidebar-divider my-0">
+    <li class="nav-item active">
+      <a class="nav-link" href="{% url 'dashboard' %}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+    <hr class="sidebar-divider">
+   
+    <li class="nav-item">
+      <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+        aria-expanded="true" aria-controls="collapseBootstrap"> -->
+        <!-- <i class="far fa-fw fa-window-maximize"></i> -->
+        <!-- <span>Bootstrap UI</span> -->
+      </a>
+      <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <!-- <h6 class="collapse-header">Bootstrap UI</h6> -->
+          <a class="collapse-item" href="alerts.html">Alerts</a>
+          <a class="collapse-item" href="buttons.html">Buttons</a>
+          <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
+          <a class="collapse-item" href="modals.html">Modals</a>
+          <a class="collapse-item" href="popovers.html">Popovers</a>
+          <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+        aria-controls="collapseForm">
+        <i class="fab fa-fw fa-wpforms"></i>
+        <span>Forms</span>
+      </a>
+      <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Forms</h6>
+          <a class="collapse-item" href="form_basics.html">Form Basics</a>
+          <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+        aria-controls="collapseTable">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Tables</span>
+      </a>
+      <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Tables</h6>
+          <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
+          <a class="collapse-item" href="datatables.html">DataTables</a>
+        </div>
+      </div>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="ui-colors.html">
+        <i class="fas fa-fw fa-palette"></i>
+        <span>UI Colors</span>
+      </a>
+    </li> -->
+    <!-- <hr class="sidebar-divider"> -->
+    <!-- <div class="sidebar-heading">
+      Examples
+    </div> -->
+    <li class="nav-item">
+      <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
+        aria-controls="collapsePage">
+        <i class="fas fa-fw fa-columns"></i>
+        <span>Pages</span>
+      </a> -->
+      <!-- <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Example Pages</h6>
+          <a class="collapse-item" href="login.html">Login</a>
+          <a class="collapse-item" href="register.html">Register</a>
+          <a class="collapse-item" href="404.html">404 Page</a>
+          <a class="collapse-item" href="blank.html">Blank Page</a>
+        </div>
+      </div> -->
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="charts.html">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Charts</span>
+      </a>
+    </li> -->
+    <hr class="sidebar-divider">
+    <div class="version" id="version-ruangadmin"></div>
+  </ul>
+  <!-- Sidebar -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <!-- TopBar -->
+      <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <img class="img-profile rounded-circle" src="{{user.profile_pic.url}}" style="max-width: 60px">
+              <span class="ml-2 d-none d-lg-inline text-white small">{{user.first_name}} {{user.last_name}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="{% url 'profile' %}">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- Topbar -->
+
+      <!-- Container Fluid-->
+      <div class="container-fluid" id="container-wrapper">
+        
+        <section>
+          <div class="rt-container">
+            <div class="col-rt-12">
+              <div class="Scriptcontent">
+                <!-- Student Profile -->
+                <div class="student-profile py-4">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="card shadow-sm">
+                          <div class="card-header bg-transparent text-center">
+                            <img
+                              class="profile_img"
+                              src="https://source.unsplash.com/600x300/?student"
+                              alt="student dp"
+                            />
+                            <h3>Ishmam Ahasan Samin</h3>
+                          </div>
+                          <div class="card-body">
+                            <p class="mb-0">
+                              <strong class="pr-1">Student ID:</strong>321000001
+                            </p>
+                            <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
+                            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                          <div class="card-header bg-transparent border-0">
+                            <h3 class="mb-0">
+                              <i class="far fa-clone pr-1"></i>General Information
+                            </h3>
+                          </div>
+                          <div class="card-body pt-0">
+                            <table class="table table-bordered">
+                              <tr>
+                                <th width="30%">Roll</th>
+                                <td width="2%">:</td>
+                                <td>125</td>
+                              </tr>
+                              <tr>
+                                <th width="30%">Academic Year</th>
+                                <td width="2%">:</td>
+                                <td>2020</td>
+                              </tr>
+                              <tr>
+                                <th width="30%">Gender</th>
+                                <td width="2%">:</td>
+                                <td>Male</td>
+                              </tr>
+                              <tr>
+                                <th width="30%">Religion</th>
+                                <td width="2%">:</td>
+                                <td>Group</td>
+                              </tr>
+                              <tr>
+                                <th width="30%">blood</th>
+                                <td width="2%">:</td>
+                                <td>B+</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                        <div style="height: 26px"></div>
+                        <div class="card shadow-sm">
+                          <div class="card-header bg-transparent border-0">
+                            <h3 class="mb-0">
+                              <i class="far fa-clone pr-1"></i>Other Information
+                            </h3>
+                          </div>
+                          <div class="card-body pt-0">
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                              sed do eiusmod tempor incididunt ut labore et dolore magna
+                              aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                              ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- partial -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+       
+      <!---Container Fluid-->
+    </div>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+           <span>copyright @InductusGroup
+     <!--  <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b> -->
+          </span>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer -->
+  </div>
+</div>
+
+
+{% endblock %}
+

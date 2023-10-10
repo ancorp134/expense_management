@@ -18,12 +18,13 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from account.views import loginview,logoutview
-from base.views import dashboard
+from base.views import dashboard , profileView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/auth/login',loginview,name='login'),
     path('logout/',logoutview,name="logout"),
     path('',dashboard,name="dashboard"),
+    path('dashboard/profile',profileView,name='profile')
 ]
 
 if settings.DEBUG:

@@ -7,10 +7,6 @@ from django.urls import reverse
 # Create your views here.
 
 
-def register(request):
-    if request.method == "POST":
-        pass
-
 
 def loginview(request):
     
@@ -25,7 +21,8 @@ def loginview(request):
         
         if user is not None:
             login(request,user)
-            return redirect('dashboard')
+            context ={'user': user}
+            return redirect(reverse('dashboard'),context)
         
         return messages.error(request,"Invalid credentials")
 
