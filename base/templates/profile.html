@@ -363,8 +363,8 @@
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              <img class="img-profile rounded-circle" src="{{user.profile_pic.url}}" style="max-width: 60px">
-              <span class="ml-2 d-none d-lg-inline text-white small">{{user.first_name}} {{user.last_name}}</span>
+              <img class="img-profile rounded-circle" src="{{employee.profile_pic.url}}" style="max-width: 60px">
+              <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
             </a>
             <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               <a class="dropdown-item" href="{% url 'profile' %}">
@@ -402,10 +402,10 @@
                           <div class="card-header bg-transparent text-center">
                             <img style="max-width: 100%; border-radius: 15px; height: 100%;"
                               class="profile_img"
-                              src="{{user.profile_pic.url}}"
+                              src="{{employee.profile_pic.url}}"
                               alt="student dp"
                             />
-                            <h5>{{user.first_name}} {{user.last_name}}</h5>
+                            <h5>@{{user.username}}</h5>
                           </div>
                           <div class="card-body">
                             <p class="mb-0">
@@ -428,33 +428,71 @@
                               <tr>
                                 <th width="30%">Contract No.</th>
                                 <td width="2%">:</td>
-                                <td>{{user.contract_no}}</td>
+                                <td>{{employee.contract_no}}</td>
                               </tr>
                               <tr>
                                 <th width="30%">Contract Start </th>
                                 <td width="2%">:</td>
-                                <td>{{user.contract_start_date}}</td>
+                                <td>{{employee.contract_start_date}}</td>
                               </tr>
                               <tr>
                                 <th width="30%">Contract End</th>
                                 <td width="2%">:</td>
-                                <td>{{user.contract_end_date}}</td>
+                                <td>{{employee.contract_end_date}}</td>
                               </tr>
                               <tr>
                                 <th width="30%">State</th>
                                 <td width="2%">:</td>
-                                <td>{{user.state}}</td>
+                                <td>{{employee.state}}</td>
                               </tr>
                               <tr>
                                 <th width="30%">Mobile</th>
                                 <td width="2%">:</td>
-                                <td>+91 {{user.phone_number}}</td>
+                                <td>+91 {{employee.phone_number}}</td>
                               </tr>
                             </table>
                           </div>
                         </div>
                         <div style="height: 36px"></div>
-                        <button type="submit" class="btn btn-primary">Change Password</button>
+                        <button type="submit" class="btn btn-primary" data-toggle = "modal" data-target="#exampleModal">Change Password</button>
+                        <!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method = "POST" action ="{% url 'changePassword' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="">Current Password</label>
+            <input type="password" class="form-control" name = "current_password" id="current_password" aria-describedby="emailHelp" placeholder="Enter password">
+          </div>
+          <div class="form-group">
+            <label for="">New Password</label>
+            <input type="password" class="form-control" name = "new_password1" id = "new_password1"  placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="">Confirm New Password</label>
+            <input type="password" class="form-control" name = "new_password2" id = "new_password2"  placeholder="Password">
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" >Save changes</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
                       </div>
                     </div>
                   </div>
@@ -464,6 +502,22 @@
             </div>
           </div>
         </section>
+
+        {% if messages %}
+        
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}<p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+  
+        {% endif %}
+
+        
+
 
        
       <!---Container Fluid-->

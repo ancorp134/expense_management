@@ -1,30 +1,30 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from .managers import UserManager
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 import uuid
 # Create your models here.
 
 
-class Employee(AbstractUser):
-    username = None
-    last_login = None
-    groups = None
-    user_permissions=None
-    
-    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
-    email = models.EmailField(unique=True , max_length=40)
+class Employee(models.Model):
+    id = models.UUIDField(default=uuid.uuid4,primary_key=True,editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,editable=False)
     contract_no = models.CharField(unique=True,max_length=15,null=True)
     contract_start_date = models.DateField(null=True)
     contract_end_date = models.DateField(null=True)
     phone_number = models.CharField(unique=True,max_length=10,null=True)
     profile_pic = models.ImageField(default="images/default.avif", upload_to="profile_pic")
     state = models.CharField(null=True,max_length=30)
-    
-    
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
-
-    objects = UserManager()
 
     def __str__(self):
-        return self.email 
+        return str(self.user)
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Employee.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.employee.save()

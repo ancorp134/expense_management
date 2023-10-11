@@ -52,7 +52,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-AUTH_USER_MODEL = 'account.Employee'
+
+
+
+
+
 
 ROOT_URLCONF = 'expense_management.urls'
 

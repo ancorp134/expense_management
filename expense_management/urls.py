@@ -18,14 +18,15 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from account.views import loginview,logoutview
-from base.views import dashboard , profileView
+from base.views import dashboard , profileView , changePassword
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/auth/login',loginview,name='login'),
     path('logout/',logoutview,name="logout"),
     path('',dashboard,name="dashboard"),
-    path('dashboard/profile',profileView,name='profile')
-]
+    path('dashboard/profile',profileView,name='profile'),
+    path('changePassword/',changePassword,name="changePassword"),
+]   
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
