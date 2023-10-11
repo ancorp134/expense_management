@@ -24,7 +24,8 @@ def loginview(request):
             context ={'user': user}
             return redirect(reverse('dashboard'),context)
         
-        return messages.error(request,"Invalid credentials")
+        messages.error(request,"Invalid credentials")
+        return render(request,"login.html")
 
     return render(request,"login.html")
 

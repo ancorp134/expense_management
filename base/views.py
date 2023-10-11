@@ -1,19 +1,26 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from account.models import Employee
+from account.models import Employee,Budget
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib import messages
 # Create your views here.
 User = get_user_model()
 @login_required(login_url='login')
 def dashboard(request):
-    employee = Employee.objects.get(user=request.user)
+    try:
+        employee = Employee.objects.get(user=request.user)
+        budget = Budget.objects.get(employee=employee)
+        
+    except Budget.DoesNotExist:
+        # Handle the case where no budget is found
+        budget = 0 
     users = request.user
 
     context = {
         'user' : users,
-        'employee' : employee
+        'employee' : employee,
+        'budget' : budget
     }
     
     return render(request,'dashboard.html',context)
@@ -56,3 +63,7 @@ def changePassword(request):
 
         
     return render(request,'profile.html')
+
+
+def error404(request, exception):
+    return render(request, '404.html')
