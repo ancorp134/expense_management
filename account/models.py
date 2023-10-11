@@ -24,11 +24,24 @@ class Employee(models.Model):
 
 class Budget(models.Model):
     id = models.UUIDField(default=uuid.uuid4,primary_key=True,editable=False)
-    employee = models.ForeignKey(Employee,on_delete=models.CASCADE)
+    employee = models.OneToOneField(Employee,on_delete=models.CASCADE)
     budget_amount = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     remaining_budget = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     budget_added = models.DateField(auto_now_add=True)
     budget_modified = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return str(self.employee)
+    
+
+def user_directory_path(instance, filename): 
+  return 'AdvanceTripPlans/{0}/{1}'.format(instance.employee.user.username, filename) 
+    
+class AdvanceTripPlan(models.Model):
+    id = models.UUIDField(default=uuid.uuid4,primary_key=True,editable=False)
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE)
+    date_added = models.DateField(auto_now_add=True)
+    trip_plan = models.FileField( upload_to=user_directory_path)
 
     def __str__(self):
         return str(self.employee)

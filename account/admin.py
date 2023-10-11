@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee , Budget
+from .models import Employee , Budget, AdvanceTripPlan
 
 # Register your models here.
 
@@ -10,6 +10,10 @@ class EmployeeAdmin(admin.ModelAdmin):
 class BudgetAdmin(admin.ModelAdmin):
   list_display = ("employee","budget_amount","remaining_budget","budget_added","budget_modified")
 
+class AdvanceTripPlanAdmin(admin.ModelAdmin):
+  list_display = ("employee","date_added","trip_plan")
+
 
 admin.site.register(Employee,EmployeeAdmin)
 admin.site.register(Budget,BudgetAdmin)
+admin.site.register(AdvanceTripPlan,AdvanceTripPlanAdmin)

@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from account.models import Employee,Budget
+from account.models import Employee,Budget,AdvanceTripPlan
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib import messages
+
 # Create your views here.
 User = get_user_model()
 @login_required(login_url='login')
@@ -63,6 +64,23 @@ def changePassword(request):
 
         
     return render(request,'profile.html')
+
+
+@login_required(login_url='login')
+def advancetravelPlan(request):
+    if request.method == 'POST':
+        trip_plan_file = request.FILES.get('trip_plan')
+        employee = Employee.objects.get(user=request.user)
+        trip=AdvanceTripPlan.objects.create(
+                employee=employee,
+                trip_plan=trip_plan_file
+        )
+        print(trip)
+        messages.success(request,"Trip Plan Added Successfully!")
+        return redirect('dashboard')
+    
+    return redirect('dashboard')
+
 
 
 def error404(request, exception):

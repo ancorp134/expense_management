@@ -18,7 +18,7 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from account.views import loginview,logoutview
-from base.views import dashboard , profileView , changePassword 
+from base.views import dashboard , profileView , changePassword ,advancetravelPlan
 
 handler404 = 'base.views.error404'
 
@@ -32,6 +32,7 @@ urlpatterns = [
     path('',dashboard,name="dashboard"),
     path('dashboard/profile',profileView,name='profile'),
     path('changePassword/',changePassword,name="changePassword"),
+    path('advancetravelplan/',advancetravelPlan,name="advancetravelplan"),
 ]   
 
 if settings.DEBUG:
