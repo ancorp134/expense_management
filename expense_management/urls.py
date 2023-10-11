@@ -22,6 +22,8 @@ from base.views import dashboard , profileView , changePassword
 
 handler404 = 'base.views.error404'
 
+
+
 urlpatterns = [
     
     path('admin/', admin.site.urls),
