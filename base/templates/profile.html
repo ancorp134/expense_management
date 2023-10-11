@@ -7,6 +7,7 @@
   html {
     box-sizing: border-box;
   }
+
   *,
   *:before,
   *:after {
@@ -29,6 +30,7 @@
   summary {
     display: block;
   }
+
   body {
     color: #222;
     font-size: 100%;
@@ -37,21 +39,24 @@
     padding: 0;
     font-family: "Raleway", sans-serif;
   }
+
   a {
     font-family: "Raleway", sans-serif;
     text-decoration: none;
     outline: none;
   }
+
   a:hover,
   a:focus {
     color: #373e18;
   }
+
   section {
     float: left;
     width: 100%;
     padding-bottom: 3em;
   }
-  
+
   h2 {
     color: #1a0e0e;
     font-size: 26px;
@@ -60,6 +65,7 @@
     line-height: normal;
     text-transform: uppercase;
   }
+
   h2 span {
     display: block;
     padding: 0;
@@ -94,10 +100,12 @@
     padding: 0;
     text-align: left;
   }
+
   .ScriptTop li {
     list-style: none;
     display: inline-block;
   }
+
   .ScriptTop li a {
     background: #6a4aed none repeat scroll 0 0;
     color: #fff;
@@ -108,6 +116,7 @@
     text-decoration: none;
     text-transform: capitalize;
   }
+
   .ScriptTop li a:hover {
     background: #000;
     color: #fff;
@@ -122,13 +131,16 @@
     width: 100%;
     padding: 2em 0;
   }
+
   .rt-heading {
     margin: 0 auto;
     text-align: center;
   }
+
   .Scriptcontent {
     line-height: 28px;
   }
+
   .ScriptHeader h1 {
     font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro",
       "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue",
@@ -141,6 +153,7 @@
     margin: 0;
     line-height: normal;
   }
+
   .ScriptHeader h2 {
     color: #312c8f;
     font-size: 20px;
@@ -148,6 +161,7 @@
     margin: 5px 0 0;
     line-height: normal;
   }
+
   .ScriptHeader h1 span {
     display: block;
     padding: 0;
@@ -155,6 +169,7 @@
     opacity: 0.7;
     margin-top: 5px;
   }
+
   .ScriptHeader span {
     display: block;
     padding: 0;
@@ -176,6 +191,7 @@
     padding-left: 12px;
     padding-right: 12px;
   }
+
   .rt-row:before,
   .rt-row:after {
     display: table;
@@ -186,6 +202,7 @@
   .rt-row:after {
     clear: both;
   }
+
   [class^="col-rt-"] {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -201,10 +218,12 @@
     .rt-container {
       width: 750px;
     }
+
     [class^="col-rt-"] {
       float: left;
       width: 49.9999999999%;
     }
+
     .col-rt-6,
     .col-rt-12 {
       width: 100%;
@@ -215,32 +234,40 @@
     .rt-container {
       width: 1170px;
     }
+
     .col-rt-1 {
       width: 16.6%;
     }
+
     .col-rt-2 {
       width: 30.33%;
     }
+
     .col-rt-3 {
       width: 50%;
     }
+
     .col-rt-4 {
       width: 67.664%;
     }
+
     .col-rt-5 {
       width: 83.33%;
     }
   }
 
   @media only screen and (min-width: 240px) and (max-width: 768px) {
+
     .ScriptTop h1,
     .ScriptTop ul {
       text-align: center;
     }
+
     .ScriptTop h1 {
       margin-top: 0;
       margin-bottom: 15px;
     }
+
     .ScriptTop ul {
       margin-top: 12px;
     }
@@ -250,16 +277,18 @@
     .scriptnav ul {
       text-align: center;
     }
+
     .scriptnav ul {
       margin-top: 12px;
     }
+
     #float-right {
       float: none;
     }
   }
 </style>
-{% load static %} 
-{% block title %} Employee Profile {% endblock %} 
+{% load static %}
+{% block title %} Employee Profile {% endblock %}
 
 {% block start %}
 
@@ -279,14 +308,14 @@
         <span>Dashboard</span></a>
     </li>
     <hr class="sidebar-divider">
-   
+
     <li class="nav-item">
       <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
         aria-expanded="true" aria-controls="collapseBootstrap"> -->
-        <!-- <i class="far fa-fw fa-window-maximize"></i> -->
-        <!-- <span>Bootstrap UI</span> -->
+      <!-- <i class="far fa-fw fa-window-maximize"></i> -->
+      <!-- <span>Bootstrap UI</span> -->
       </a>
-     
+
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
@@ -377,7 +406,7 @@
                 Logout
               </a>
             </div> -->
-            
+
           </li>
           <button class="btn btn-primary" style="margin: auto auto;">
             <a href="{% url 'logout' %}" style="text-decoration: none; color: white;">Logout</a>
@@ -388,7 +417,32 @@
 
       <!-- Container Fluid-->
       <div class="container-fluid" id="container-wrapper">
-        
+
+        {% if messages %}
+
+        {% for message in messages %}
+        {% if message.tags == "success" %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endif %}
+        {% if message.tags == "error" %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% endif %}
+
         <section>
           <div class="rt-container">
             <div class="col-rt-12">
@@ -400,11 +454,8 @@
                       <div class="col-lg-4">
                         <div class="card shadow-sm">
                           <div class="card-header bg-transparent text-center">
-                            <img style="max-width: 100%; border-radius: 15px; height: 100%;"
-                              class="profile_img"
-                              src="{{employee.profile_pic.url}}"
-                              alt="student dp"
-                            />
+                            <img style="max-width: 100%; border-radius: 15px; height: 100%;" class="profile_img"
+                              src="{{employee.profile_pic.url}}" alt="student dp" />
                             <h5>@{{user.username}}</h5>
                           </div>
                           <div class="card-body">
@@ -454,89 +505,83 @@
                           </div>
                         </div>
                         <div style="height: 36px"></div>
-                        <button type="submit" class="btn btn-primary" data-toggle = "modal" data-target="#exampleModal">Change Password</button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal"
+                          data-target="#exampleModal">Change Password</button>
                         <!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method = "POST" action ="{% url 'changePassword' %}">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="">Current Password</label>
-            <input type="password" class="form-control" name = "current_password" id="current_password" aria-describedby="emailHelp" placeholder="Enter password">
-          </div>
-          <div class="form-group">
-            <label for="">New Password</label>
-            <input type="password" class="form-control" name = "new_password1" id = "new_password1"  placeholder="Password">
-          </div>
-          <div class="form-group">
-            <label for="">Confirm New Password</label>
-            <input type="password" class="form-control" name = "new_password2" id = "new_password2"  placeholder="Password">
-          </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" >Save changes</button>
-          </div>
-        </form>
-        
-      </div>
-    </div>
-  </div>
-</div>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form method="POST" action="{% url 'changePassword' %}">
+                                  {% csrf_token %}
+                                  <div class="form-group">
+                                    <label for="">Current Password</label>
+                                    <input type="password" class="form-control" name="current_password"
+                                      id="current_password" aria-describedby="emailHelp" placeholder="Enter password">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">New Password</label>
+                                    <input type="password" class="form-control" name="new_password1" id="new_password1"
+                                      placeholder="Password">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Confirm New Password</label>
+                                    <input type="password" class="form-control" name="new_password2" id="new_password2"
+                                      placeholder="Password">
+                                  </div>
+
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </form>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- partial -->
+
               </div>
             </div>
           </div>
         </section>
 
-        {% if messages %}
-        
-        {% for message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}<p>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        {% endfor %}
-  
-        {% endif %}
-
-        
 
 
-       
-      <!---Container Fluid-->
-    </div>
-    <!-- Footer -->
-    <br>
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-           <span>copyright @InductusGroup
-     <!--  <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b> -->
-          </span>
-        </div>
+
+
+
+
+        <!---Container Fluid-->
       </div>
-    </footer>
-    <!-- Footer -->
+      <!-- Footer -->
+      <br>
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>copyright @InductusGroup
+              <!--  <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b> -->
+            </span>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer -->
+    </div>
   </div>
-</div>
 
 
-{% endblock %}
-
+  {% endblock %}
