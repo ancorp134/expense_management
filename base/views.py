@@ -29,7 +29,6 @@ def dashboard(request):
 @login_required(login_url='login')
 def profileView(request):
     employee = Employee.objects.get(user=request.user)
-    print(employee)
     user = request.user
     context ={
         'user' : user,
@@ -68,19 +67,43 @@ def changePassword(request):
 
 @login_required(login_url='login')
 def advancetravelPlan(request):
+    employee = Employee.objects.get(user=request.user)
+    trip_plans = AdvanceTripPlan.objects.filter(employee=employee)
+    print(trip_plans)
+    user = request.user
+    context ={
+        'user' : user,
+        'employee' : employee,
+        'trip_plans' : trip_plans
+    }
     if request.method == 'POST':
         trip_plan_file = request.FILES.get('trip_plan')
-        employee = Employee.objects.get(user=request.user)
+        month = request.POST.get('month')
+        year = request.POST.get('year')
+        print(trip_plan_file)
+       
         trip=AdvanceTripPlan.objects.create(
                 employee=employee,
+                month=month,
+                year = year,
                 trip_plan=trip_plan_file
         )
         print(trip)
         messages.success(request,"Trip Plan Added Successfully!")
-        return redirect('dashboard')
+        return redirect('advancetravelplan')
     
-    return redirect('dashboard')
+    return render(request,'advanceTripPlan.html',context)
 
+@login_required(login_url='login')
+def actualTripPlan(request):
+    employee = Employee.objects.get(user=request.user)
+    user = request.user
+    context ={
+        'user' : user,
+        'employee' : employee,
+        
+    }
+    return render(request,'actualTripplan.html',context)
 
 
 def error404(request, exception):

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+import os
 import uuid
 # Create your models here.
 
@@ -34,14 +34,30 @@ class Budget(models.Model):
         return str(self.employee)
     
 
-def user_directory_path(instance, filename): 
-  return 'AdvanceTripPlans/{0}/{1}'.format(instance.employee.user.username, filename) 
+def get_upload_path(instance,filename):
+    return os.path.join('Advance Trip Plans/' +  str(instance.employee.user.username),filename)
+
     
 class AdvanceTripPlan(models.Model):
     id = models.UUIDField(default=uuid.uuid4,primary_key=True,editable=False)
     employee = models.ForeignKey(Employee,on_delete=models.CASCADE)
+    month = models.CharField(choices = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March' , 'March'),
+        ('April','April'),
+        ('May','May'),
+        ('June','June'),
+        ('July','July'),
+        ('August','August'),
+        ('September','September'),
+        ('October','October'),
+        ('November','November'),
+        ('December','December')
+    ],default = "January",max_length=10)
+    year = models.CharField(max_length=20,default = "2023",null=True)
     date_added = models.DateField(auto_now_add=True)
-    trip_plan = models.FileField( upload_to=user_directory_path)
+    trip_plan = models.FileField(upload_to=get_upload_path)
 
     def __str__(self):
         return str(self.employee)
