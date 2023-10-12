@@ -9,6 +9,7 @@ from django.contrib import messages
 User = get_user_model()
 @login_required(login_url='login')
 def dashboard(request):
+    
     try:
         employee = Employee.objects.get(user=request.user)
         budget = Budget.objects.get(employee=employee)
@@ -89,7 +90,7 @@ def advancetravelPlan(request):
                 trip_plan=trip_plan_file
         )
         print(trip)
-        messages.success(request,"Trip Plan Added Successfully!")
+        messages.success(request,"Trvel Plan Added Successfully!")
         return redirect('advancetravelplan')
     
     return render(request,'advanceTripPlan.html',context)

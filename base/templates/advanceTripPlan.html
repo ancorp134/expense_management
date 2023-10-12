@@ -30,8 +30,8 @@
         </a>
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="" data-target="">Advanced Trip Plan</a>
-            <a class="collapse-item" href="">Actual Trip Plan</a>
+            <a class="collapse-item" href="{% url 'advancetravelplan' %}" data-target="">Advanced Trip Plan</a>
+            <a class="collapse-item" href="{% url 'actualTripplan' %}">Actual Trip Plan</a>
           </div>
         </div>
       </li>
@@ -52,7 +52,7 @@
                 <a class="nav-link " href="{% url 'profile' %}"  role="button" 
                   >
                   <img class="img-profile rounded-circle" src="{{employee.profile_pic.url}}" style="max-width: 60px">
-                  <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
+                  <span class="ml-2 d-none d-lg-inline text-white small">{{employee.full_name}}</span>
                 </a>
               </li>
               <button class="btn btn-primary" style="margin: auto auto;">
@@ -67,7 +67,24 @@
 
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
+
             <div class="col-xl-12 col-lg-7 mb-4">
+              {% if messages %}
+        
+              {% for message in messages %}
+             
+              {% if message.tags == "success" %}
+      
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endif %}
+              {% endfor %}
+      
+              {% endif %}
               <button type="submit" class="btn btn-success" data-toggle="modal"
               data-target="#exampleModal">Upload Advance Travel Plan</button> 
               <div class="card">
@@ -121,28 +138,41 @@
                   
                   <form method="post" action="{% url 'advancetravelplan' %}" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <label >Select Month:</label>
-                    <select id="month" name="month">
-                      <option value="January">January</option>
-                      <option value="February">February</option>
-                      <option value="March">March</option>
-                      <option value="April">April</option>
-                      <option value="May">May</option>
-                      <option value="June">June</option>
-                      <option value="August">August</option>
-                      <option value="September">September</option>
-                      <option value="October">October</option>
-                      <option value="November">November</option>
-                      <option value="December">December</option>
-                    </select><br>
-                    <label > Year</label>
-                    <input type="text" name = "year"><br>
-                    <label for="trip_plan">Trip Plan File:</label><br>
-                    <input type="file" name="trip_plan" required style = "font-family: Arial, sans-serif; ">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputState">Select Month</label>
+                        <select id="inputState" class="form-control" name="month">
+                          <option value="January" selected>January</option>
+                          <option value="February">February</option>
+                          <option value="March">March</option>
+                          <option value="April">April</option>
+                          <option value="May">May</option>
+                          <option value="June">June</option>
+                          <option value="August">August</option>
+                          <option value="September">September</option>
+                          <option value="October">October</option>
+                          <option value="November">November</option>
+                          <option value="December">December</option>
 
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Year</label>
+                        <input type="text" class="form-control" id="" name="year" placeholder="eg. 2023">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-group">
+                        <label for="exampleFormControlFile1">Upload Travel Plan</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="trip_plan" afccept=".pdf,.doc"/ required>
+                        <small  class="text-muted">
+                         Please upload file in .pdf 
+                        </small>
+                      </div>
+                    </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Add Trip Plan</button>
+                      <button type="submit" class="btn btn-primary">Add Travel Plan</button>
                     </div>
                   </form>
 

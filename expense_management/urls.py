@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from account.views import loginview,logoutview
 from base.views import dashboard , profileView , changePassword ,advancetravelPlan,actualTripPlan
-
+from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView
 handler404 = 'base.views.error404'
 
 
@@ -27,13 +27,15 @@ handler404 = 'base.views.error404'
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('account/auth/login',loginview,name='login'),
+    path('accounts/login',loginview,name='login'),
     path('logout/',logoutview,name="logout"),
     path('',dashboard,name="dashboard"),
     path('dashboard/profile',profileView,name='profile'),
-    path('changePassword/',changePassword,name="changePassword"),
-    path('advancetravelplan/',advancetravelPlan,name="advancetravelplan"),
-    path('actualTripplan/',actualTripPlan,name="actualTripplan")
+    path('dashboard/profile/changepassword/',changePassword,name="changePassword"),
+    path('dashboard/advance_travel_plan/',advancetravelPlan,name="advancetravelplan"),
+    path('dashboard/actual_trip_plan/',actualTripPlan,name="actualTripplan"),
+    path('reset/confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password/reset/complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]   
 
 if settings.DEBUG:
