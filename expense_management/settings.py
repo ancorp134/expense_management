@@ -153,8 +153,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server hostname
 EMAIL_PORT = 465  # The default SMTP port is 25, but it might vary based on your email provider
 # EMAIL_USE_TLS = True  # Use TLS for secure connection (recommended)
-EMAIL_HOST_USER = 'inductus.un@gmail.com'  # Replace with your email address
-EMAIL_HOST_PASSWORD = 'kuipegigbyfwensp'  # Replace with your email password
+EMAIL_HOST_USER = ''  # Replace with your email address
+EMAIL_HOST_PASSWORD = ''  # Replace with your email password
 
 EMAIL_USE_SSL = True  # Set to True if your SMTP server uses SSL
 EMAIL_TIMEOUT = None  # Connection timeout for sending email (set to None for no timeout)
